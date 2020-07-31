@@ -5,14 +5,14 @@ Docker image to work with Ansible
 ## Building the image 
 
 ```bash
-docker build -t douglasqsantos/ansible:2.9.11 .
+docker build -t douglasqsantos/ansible .
 ```
 
 ## Using the Image
 
 Access the directory with the ansible files to work and start the image
 ```bash
-docker run --rm -it -v "${PWD}:/ansible/repo" -w /ansible douglasqsantos/ansible:2.9.11 fish
+docker run --rm -it -v "${PWD}:/ansible/repo" -w /ansible douglasqsantos/ansible fish
 ```
 
 After access the image import the virtualenv to use the ansible
