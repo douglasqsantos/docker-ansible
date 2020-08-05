@@ -12,12 +12,12 @@ docker build -t douglasqsantos/ansible .
 
 Access the directory with the ansible files to work and start the image
 ```bash
-docker run --rm -it -v "${PWD}:/ansible/repo" -w /ansible douglasqsantos/ansible fish
+docker run --rm -it -v "${PWD}:/ansible/workspace" -w /ansible douglasqsantos/ansible fish
 ```
 
 After access the image import the virtualenv to use the ansible
 ```bash
-source venv/bin/activate.fish
+source venv_ansible/bin/activate.fish
 ```
 
 Now just check if the ansible is working

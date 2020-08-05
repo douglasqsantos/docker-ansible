@@ -4,7 +4,7 @@ FROM alpine:3.12
 ## Setting the root Directory
 WORKDIR /ansible
 
-## Installing the packages
+# Installing the packages
 RUN apk update && apk upgrade && \
         apk add --no-cache bash \
         fish \
@@ -16,7 +16,6 @@ RUN apk update && apk upgrade && \
         git \
         python3 \
         py3-pip \
-        py3-virtualenv \
         ca-certificates && \
         apk --update add --virtual build-dependencies \
         python3-dev \
@@ -26,14 +25,13 @@ RUN apk update && apk upgrade && \
         openssl-dev
 
 ## Preparing the Ansible
-RUN pip install --upgrade pip && \
-    virtualenv venv && \
-    source venv/bin/activate && \
-    pip install python-keyczar docker-py boto3 botocore && \
-    pip install --upgrade pip && \
-    pip install ansible && \
+RUN python3 -m venv venv_ansible && \
+    source venv_ansible/bin/activate && \
+    pip install --upgrade pip setuptools && \
+    pip install --upgrade python-keyczar docker-py boto3 botocore && \
+    pip install --upgrade ansible && \
     apk del build-dependencies && \
     rm -rf /var/cache/apk/*
 
-## Default Command to execute
+## Default Command
 CMD ["/usr/bin/fish"]
